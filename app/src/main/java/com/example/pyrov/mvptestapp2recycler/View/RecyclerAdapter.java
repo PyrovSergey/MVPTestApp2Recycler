@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.pyrov.mvptestapp2recycler.Model.ModelItem;
-import com.example.pyrov.mvptestapp2recycler.Presenter.Contract;
 import com.example.pyrov.mvptestapp2recycler.R;
 import com.squareup.picasso.Picasso;
 
@@ -16,14 +15,14 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     private List<ModelItem> list;
-    private Contract.Presenter presenter;
+    private ViewActivitySelection.Selection select;
 
-    public RecyclerAdapter(Contract.Presenter presenter) {
-        this.presenter = presenter;
+    public RecyclerAdapter(ViewActivitySelection.Selection select) {
+        this.select = select;
     }
 
-    public void addAll() {
-        this.list = presenter.getDataModel();
+    public void addAll(List<ModelItem> list) {
+        this.list = list;
     }
 
     @NonNull
@@ -40,7 +39,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.selectedItem(position);
+                select.ChoiceId(position);
             }
         });
     }
@@ -54,10 +53,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 class RecyclerViewHolder extends RecyclerView.ViewHolder {
     private ImageView imageView;
 
-
     public RecyclerViewHolder(View itemView) {
         super(itemView);
-        imageView = (ImageView) itemView.findViewById(R.id.image);
+        imageView = itemView.findViewById(R.id.image);
     }
 
     public void bind(ModelItem modelItem) {

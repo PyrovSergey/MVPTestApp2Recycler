@@ -14,10 +14,10 @@ public interface Contract {
     interface Presenter {
         List<ModelItem> getDataModel();
 
-        void selectedItem(int position);
+        void selectedItem(int selectId);
     }
 
-    interface View {
+    interface ActivityView {
         void showItem(String string);
     }
 }

@@ -7,10 +7,10 @@ import java.util.List;
 
 public class Presenter implements Contract.Presenter {
 
-    private Contract.View view;
+    private Contract.ActivityView view;
     private Contract.Data data;
 
-    public Presenter(Contract.View view) {
+    public Presenter(Contract.ActivityView view) {
         this.view = view;
         data = Data.getInstance();
     }
